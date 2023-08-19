@@ -1,4 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { GlobalStyles } from "./styles/GlobalStyles";
+
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
 import Diaries from "./pages/Diaries";
@@ -11,29 +14,32 @@ import Layout from "./ui/Layout";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="auth" element={<Auth />} />
-        <Route
-          element={
-            <ProtectedRoutes>
-              <Layout />
-            </ProtectedRoutes>
-          }
-        >
+    <>
+      <GlobalStyles />
+      <BrowserRouter>
+        <Routes>
+          <Route path="auth" element={<Auth />} />
           <Route path="/" element={<Landing />} />
-          <Route path="diary">
-            <Route index element={<Diaries />}></Route>
-            <Route path="create" element={<CreateDiary />} />
-            <Route path=":id">
-              <Route index element={<Diary />} />
-              <Route path="edit" element={<EditDiary />} />
+          <Route
+            element={
+              <ProtectedRoutes>
+                <Layout />
+              </ProtectedRoutes>
+            }
+          >
+            <Route path="diary">
+              <Route index element={<Diaries />}></Route>
+              <Route path="create" element={<CreateDiary />} />
+              <Route path=":id">
+                <Route index element={<Diary />} />
+                <Route path="edit" element={<EditDiary />} />
+              </Route>
             </Route>
+            <Route path="account" element={<Account />} />
           </Route>
-          <Route path="account" element={<Account />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

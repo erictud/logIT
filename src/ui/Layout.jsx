@@ -5,7 +5,6 @@ export default function Layout() {
     <>
       {/* navigation */}
       nav
-      {/* sidebar */}
       {/* content */}
       <Outlet />
     </>
