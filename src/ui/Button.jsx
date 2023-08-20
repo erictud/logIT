@@ -11,7 +11,7 @@ const sizes = {
     }
   `,
   medium: css`
-    font-size: 1%.5;
+    font-size: 1.2rem;
     padding: 0.5rem 0.75rem;
     margin: 0 0.25rem;
 
@@ -56,7 +56,7 @@ const Button = styled.button`
 `;
 
 Button.defaultProps = {
-  size: "small",
+  size: "medium",
   type: "primary",
   active: false,
 };
