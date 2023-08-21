@@ -6,6 +6,9 @@ import Heading from "../../ui/Heading";
 import InputRow from "../../ui/InputRow";
 import Button from "../../ui/Button";
 import InputPasswordRow from "../../ui/InputPasswordRow";
+import MiniSpinner from "../../ui/MiniSpinner";
+
+import { useSignup } from "./useSignup";
 
 const StyledForm = styled.form`
   display: flex;
@@ -27,7 +30,10 @@ export default function LoginForm() {
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirmError, setPasswordConfirmError] = useState("");
 
-  const submitForm = (e) => {
+  //
+  const { isLoading, signup } = useSignup();
+
+  const submitForm = async (e) => {
     e.preventDefault();
 
     // reset errors
@@ -53,6 +59,8 @@ export default function LoginForm() {
       setPasswordConfirmError("Passwords do not match!");
       return;
     }
+
+    await signup({ email, password, username });
   };
 
   return (
@@ -88,7 +96,7 @@ export default function LoginForm() {
           error={passwordConfirmError}
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
-        <Button>Sign up</Button>
+        <Button>{isLoading ? <MiniSpinner /> : "Sign up"}</Button>
       </StyledForm>
     </div>
   );

@@ -6,6 +6,9 @@ import Heading from "../../ui/Heading";
 import InputRow from "../../ui/InputRow";
 import Button from "../../ui/Button";
 import InputPasswordRow from "../../ui/InputPasswordRow";
+import MiniSpinner from "../../ui/MiniSpinner";
+
+import { useLogin } from "./useLogin";
 
 const StyledForm = styled.form`
   display: flex;
@@ -23,7 +26,10 @@ export default function LoginForm() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const submitForm = (e) => {
+  //
+  const { login, isLoading } = useLogin();
+
+  const submitForm = async (e) => {
     e.preventDefault();
 
     // reset errors
@@ -38,6 +44,8 @@ export default function LoginForm() {
       setPasswordError("Invalid password");
       return;
     }
+
+    await login({ email, password });
   };
 
   return (
@@ -58,7 +66,7 @@ export default function LoginForm() {
           error={passwordError}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button>Log in</Button>
+        <Button>{isLoading ? <MiniSpinner /> : "Log in"}</Button>
       </StyledForm>
     </div>
   );
