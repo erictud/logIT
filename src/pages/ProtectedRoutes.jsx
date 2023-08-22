@@ -23,7 +23,7 @@ export default function ProtectedRoutes({ children }) {
 
   // 2) if is not loading & the user is not logged in => redirect to /auth
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) navigate("/auth", { replace: true });
+    if (!isLoading && !isAuthenticated) navigate("/", { replace: true });
   }, [isLoading, isAuthenticated, navigate]);
 
   // 3) if is loading => spinner

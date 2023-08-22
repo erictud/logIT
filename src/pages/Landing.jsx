@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
 import { HiAdjustmentsHorizontal, HiArchiveBox, HiKey } from "react-icons/hi2";
 
 import Logo from "../ui/Logo";
@@ -9,6 +10,9 @@ import Button from "../ui/Button";
 import Card from "../ui/Card";
 import Container from "../ui/Container";
 import Tabbed from "../ui/Tabbed";
+import MiniSpinner from "../ui/MiniSpinner";
+
+import { useUser } from "../features/auth/useUser";
 
 const StyledPage = styled.div`
   padding: 1rem 0.5rem;
@@ -82,6 +86,8 @@ const JoinNowContainer = styled.div`
 `;
 
 export default function Landing() {
+  const { isLoading, isAuthenticated } = useUser();
+
   return (
     <StyledPage>
       {/* HERO SECTION */}
@@ -89,9 +95,17 @@ export default function Landing() {
         {/* NAV */}
         <StyledNav>
           <Logo />
-          <Button type="underline" size="small">
-            Create account
-          </Button>
+          {isLoading ? (
+            <MiniSpinner />
+          ) : (
+            <>
+              <Link to={isAuthenticated ? "/diary" : "/auth"}>
+                <Button type="underline" size="small">
+                  {isAuthenticated ? "See all diaries" : "Create account"}
+                </Button>
+              </Link>
+            </>
+          )}
         </StyledNav>
         <HeroSectionContainer>
           <TextContainer>
@@ -102,12 +116,22 @@ export default function Landing() {
               you should log its entire journey
             </Heading>
             <Row>
-              <Button type="underline" size="medium">
-                Find more
-              </Button>
-              <Button type="primary" size="medium">
-                Start now
-              </Button>
+              {isLoading ? (
+                <MiniSpinner />
+              ) : (
+                <>
+                  {!isAuthenticated && (
+                    <Button type="underline" size="medium">
+                      Find more
+                    </Button>
+                  )}
+                  <Link to={isAuthenticated ? "/diary" : "/auth"}>
+                    <Button type="primary" size="medium">
+                      {isAuthenticated ? "go to the home page" : "Start now"}
+                    </Button>
+                  </Link>
+                </>
+              )}
             </Row>
           </TextContainer>
         </HeroSectionContainer>
@@ -245,24 +269,26 @@ export default function Landing() {
       </Container>
 
       {/* JOIN NOW SECTION */}
-      <JoinNowContainer>
-        <Heading as="h2" position="start">
-          Your best chance to sign up was yesterday... The second chance is TODAY!
-        </Heading>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab, magnam. Aspernatur,
-          quibusdam sunt corporis non at exercitationem laborum voluptatum odit, vitae molestias id
-          nemo nostrum deserunt optio modi dolores adipisci ipsum recusandae mollitia reprehenderit
-          omnis laudantium officiis aliquam! Blanditiis repudiandae fugit consequatur ex fugiat
-          voluptate distinctio repellat eveniet minima explicabo.
-        </p>
-        <Row>
-          <Button size="medium">Create account</Button>
-          <Button type="underline" size="medium">
-            Log in
-          </Button>
-        </Row>
-      </JoinNowContainer>
+      {!isAuthenticated && (
+        <JoinNowContainer>
+          <Heading as="h2" position="start">
+            Your best chance to sign up was yesterday... The second chance is TODAY!
+          </Heading>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab, magnam. Aspernatur,
+            quibusdam sunt corporis non at exercitationem laborum voluptatum odit, vitae molestias
+            id nemo nostrum deserunt optio modi dolores adipisci ipsum recusandae mollitia
+            reprehenderit omnis laudantium officiis aliquam! Blanditiis repudiandae fugit
+            consequatur ex fugiat voluptate distinctio repellat eveniet minima explicabo.
+          </p>
+          <Row>
+            <Button size="medium">Create account</Button>
+            <Button type="underline" size="medium">
+              Log in
+            </Button>
+          </Row>
+        </JoinNowContainer>
+      )}
     </StyledPage>
   );
 }
