@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
+import Header from "./Header";
 
 export default function Layout() {
   return (
     <>
-      {/* navigation */}
-      nav
+      {/* header */}
+      <Header />
       {/* content */}
       <Outlet />
     </>
