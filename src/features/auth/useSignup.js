@@ -9,8 +9,7 @@ export const useSignup = () => {
 
   const { isLoading, mutate: signup } = useMutation({
     mutationFn: signupAPI,
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
       toast.success("User created successfully! Redirecting...");
       navigate("/diary");
     },

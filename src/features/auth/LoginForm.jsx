@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Heading from "../../ui/Heading";
 import InputRow from "../../ui/InputRow";
@@ -9,6 +9,7 @@ import InputPasswordRow from "../../ui/InputPasswordRow";
 import MiniSpinner from "../../ui/MiniSpinner";
 
 import { useLogin } from "./useLogin";
+import { getUserDetails } from "../../services/apiAuth";
 
 const StyledForm = styled.form`
   display: flex;
@@ -47,6 +48,14 @@ export default function LoginForm() {
 
     await login({ email, password });
   };
+
+  //testing
+
+  useEffect(() => {
+    (async () => {
+      await getUserDetails();
+    })();
+  }, []);
 
   return (
     <div>

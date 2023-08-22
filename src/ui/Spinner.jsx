@@ -50,9 +50,11 @@ const StyledSpinner = styled.div`
 
 export default function Spinner() {
   return (
-    <StyledSpinner>
-      <div></div>
-      <div></div>
-    </StyledSpinner>
+    <>
+      <StyledSpinner>
+        <div></div>
+        <div></div>
+      </StyledSpinner>
+    </>
   );
 }

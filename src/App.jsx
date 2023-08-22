@@ -20,7 +20,18 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Toaster position="top-center" />
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          duration: 6000,
+          success: {
+            duration: 3000,
+          },
+          style: {
+            fontSize: "16px",
+          },
+        }}
+      />
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
