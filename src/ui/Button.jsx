@@ -19,7 +19,15 @@ const sizes = {
       padding: 0.5rem 1rem;
     }
   `,
-  big: {},
+  big: css`
+    font-size: 1.4rem;
+    padding: 0.5rem 0.75rem;
+    margin: 0 0.25rem;
+
+    &:hover {
+      padding: 0.5rem 1rem;
+    }
+  `,
 };
 
 const types = {
@@ -27,6 +35,13 @@ const types = {
     color: var(--color-primary-50);
     background-color: var(--color-primary-700);
     border-radius: 1rem;
+  `,
+  svg: css`
+    color: var(--color-gray-900);
+    /* background-color: var(--color-primary-700); */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   `,
   secondary: css`
     color: var(--color-gray-0);
