@@ -9,13 +9,14 @@ const StyledInputRow = styled.div`
   width: 100%;
 `;
 
-const StyledInput = styled.input`
+const StyledTextarea = styled.textarea`
   background-color: var(--color-gray-100);
   border: 1px solid var(--color-gray-600);
   width: 100%;
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+  min-height: 40vh;
 `;
 
 const StyledLabel = styled.label`
@@ -38,11 +39,11 @@ const Error = styled.p`
   font-size: 1.1rem;
 `;
 
-export default function InputRow({ label, type = "text", value, id, onChange, error }) {
+export default function TextareaRow({ value, onChange, id, label, error }) {
   return (
     <StyledInputRow>
       <StyledLabel htmlFor={id}>{label || id}</StyledLabel>
-      <StyledInput type={type} id={id} value={value} onChange={onChange} />
+      <StyledTextarea id={id} value={value} onChange={onChange} />
       {error && (
         <ErrorContainer>
           <CgDanger />

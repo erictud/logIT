@@ -45,7 +45,7 @@ function ButtonElement({ opens, children }) {
       type="secondary"
       size="medium"
       onClick={() => setIsOpen(opens)}
-      active={isOpen === opens}
+      active={(isOpen === opens).toString()}
     >
       {children}
     </Button>

@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
 import Diaries from "./pages/Diaries";
-import CreateDiary from "./pages/CreateDiary";
+import CreateDiaryPage from "./pages/CreateDiaryPage";
 import Diary from "./pages/Diary";
 import EditDiary from "./pages/EditDiary";
 import Account from "./pages/Account";
@@ -46,7 +46,7 @@ function App() {
           >
             <Route path="diary">
               <Route index element={<Diaries />}></Route>
-              <Route path="create" element={<CreateDiary />} />
+              <Route path="create" element={<CreateDiaryPage />} />
               <Route path=":id">
                 <Route index element={<Diary />} />
                 <Route path="edit" element={<EditDiary />} />

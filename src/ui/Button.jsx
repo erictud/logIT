@@ -38,7 +38,6 @@ const types = {
   `,
   svg: css`
     color: var(--color-gray-900);
-    /* background-color: var(--color-primary-700); */
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -50,6 +49,14 @@ const types = {
   underline: css`
     color: var(--color-gray-100);
     border-bottom: 2px solid var(--color-primary-700);
+  `,
+  underlineBlack: css`
+    color: var(--color-gray-700);
+    border-bottom: 2px solid var(--color-primary-700);
+  `,
+  reset: css`
+    color: var(--color-gray-0);
+    background-color: var(--color-red-dark);
   `,
 };
 
@@ -64,7 +71,7 @@ const Button = styled.button`
 
   // active
   ${(props) =>
-    props.active &&
+    props.active === "true" &&
     css`
       background-color: var(--color-primary-500);
     `}
@@ -73,7 +80,7 @@ const Button = styled.button`
 Button.defaultProps = {
   size: "medium",
   type: "primary",
-  active: false,
+  active: "false",
 };
 
 export default Button;
