@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+const FullPage = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & p {
+    font-size: 1.5rem;
+  }
+`;
+
 const StyledSpinner = styled.div`
   display: inline-block;
   position: relative;
@@ -48,13 +63,14 @@ const StyledSpinner = styled.div`
   }
 `;
 
-export default function Spinner() {
+export default function Spinner({ message }) {
   return (
-    <>
+    <FullPage>
       <StyledSpinner>
         <div></div>
         <div></div>
       </StyledSpinner>
-    </>
+      {message && <p>{message}</p>}
+    </FullPage>
   );
 }
