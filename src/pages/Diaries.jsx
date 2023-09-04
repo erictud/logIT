@@ -1,3 +1,9 @@
+import AllDiaryPages from "../features/diary/AllDiaryPages";
+
 export default function Diaries() {
-  return <div>l</div>;
+  return (
+    <div>
+      <AllDiaryPages />
+    </div>
+  );
 }

@@ -35,5 +35,18 @@ export async function createDiary({ title, description, rating, coverImage }) {
   return diaryPageData;
 }
 
-// https://zixqegipvospxofdkten.supabase.co/storage/v1/object/public/cover-images/0.7351690904185424-gfghgfhfgh
-// https://zixqegipvospxofdkten.supabase.co/storage/v1/object/public/cover-images/0.7351690904185424-gfghgfhfgh?t=2023-09-03T08%3A55%3A53.443Z
+export async function fetchDiaryPages() {
+  // get user info
+  const { data: userCredentials } = await supabase.auth.getUser();
+  const uid = userCredentials?.user?.id;
+  console.log(uid);
+
+  // get diary pages
+  const { data: diaryPages, error } = await supabase.from("diaryPage").select("*").eq("uid", uid);
+
+  if (error) {
+    throw new Error("Could not fetch diary pages!");
+  }
+
+  return diaryPages;
+}

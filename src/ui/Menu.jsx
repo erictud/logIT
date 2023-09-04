@@ -19,7 +19,7 @@ const StyledMenuElement = styled.div`
   top: ${(props) => props.position.y}px;
 
   background-color: var(--color-primary-50);
-  padding: 1rem 2rem;
+  padding: 1rem 0.5rem;
   border: 1px solid var(--color-gray-500);
   border-radius: 0.25rem;
 `;
@@ -72,6 +72,7 @@ function OpenButton({ children, id }) {
   const { open, openID, close, setPosition } = useContext(MenuCtx);
 
   function toggle(e) {
+    e.preventDefault();
     const rect = e.target?.closest("button")?.getBoundingClientRect();
     setPosition({ x: window.innerWidth - rect.width - rect.x, y: rect.height + rect.y + 8 });
     if (id !== openID || openID === "") open(id);
