@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 
 import { fetchDiaryPages } from "../../services/apiDiary";
 
-export function useDiaryPages() {
+export function usePages() {
   // search by title & sort
   const [searchParams] = useSearchParams();
   const title = searchParams.get("title") || "";

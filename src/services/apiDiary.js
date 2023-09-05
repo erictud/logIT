@@ -60,3 +60,20 @@ export async function fetchDiaryPages({ title, sortBy }) {
 
   return diaryPages;
 }
+
+export async function fetchDiaryPage(id) {
+  // get uid
+  const { data: userCredentials } = await supabase.auth.getUser();
+  const uid = userCredentials.user.id;
+
+  // fetch data
+  const { data: diaryPage, error } = await supabase
+    .from("diaryPage")
+    .select("*")
+    .eq("uid", uid)
+    .eq("id", id);
+
+  if (error) throw new Error("Could not fetch the page data!");
+
+  return diaryPage;
+}

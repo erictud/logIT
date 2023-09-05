@@ -1,10 +1,10 @@
 import Spinner from "../../ui/Spinner";
 import DiaryPagePreview from "./DiaryPagePreview";
 
-import { useDiaryPages } from "./useDiaryPages";
+import { usePages } from "./usePages";
 
 export default function AllDiaryPages() {
-  const { diaryPages, isLoading: isFetching } = useDiaryPages();
+  const { diaryPages, isLoading: isFetching } = usePages();
 
   return (
     <div>

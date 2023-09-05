@@ -1,3 +1,9 @@
+import DiaryPage from "../features/diary/DiaryPage";
+
 export default function Diary() {
-  return <div>Diary</div>;
+  return (
+    <div>
+      <DiaryPage />
+    </div>
+  );
 }
