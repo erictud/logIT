@@ -35,14 +35,24 @@ export async function createDiary({ title, description, rating, coverImage }) {
   return diaryPageData;
 }
 
-export async function fetchDiaryPages() {
+export async function fetchDiaryPages({ title, sortBy }) {
   // get user info
   const { data: userCredentials } = await supabase.auth.getUser();
   const uid = userCredentials?.user?.id;
-  console.log(uid);
 
   // get diary pages
-  const { data: diaryPages, error } = await supabase.from("diaryPage").select("*").eq("uid", uid);
+  let query = supabase.from("diaryPage").select("*").eq("uid", uid);
+
+  if (title.trim()) {
+    query = query.ilike("title", `%${title.replaceAll(" ", "").trim()}%`);
+  }
+
+  if (sortBy)
+    query = query.order(sortBy.field, {
+      ascending: sortBy.method === "asc",
+    });
+
+  const { data: diaryPages, error } = await query;
 
   if (error) {
     throw new Error("Could not fetch diary pages!");
