@@ -21,7 +21,7 @@ const StyledForm = styled.form`
 export default function LoginForm() {
   // data
   const [email, setEmail] = useState("test@test.com");
-  const [password, setPassword] = useState("testtest");
+  const [password, setPassword] = useState("12341234");
 
   // errors
   const [emailError, setEmailError] = useState("");

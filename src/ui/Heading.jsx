@@ -36,6 +36,12 @@ const Heading = styled.h1`
       letter-spacing: 0.3rem;
       color: var(--color-gray-600);
     `}
+    ${(props) =>
+    props.as === "h4" &&
+    css`
+      font-size: 1.3rem;
+      font-weight: 400;
+    `}
 `;
 
 export default Heading;

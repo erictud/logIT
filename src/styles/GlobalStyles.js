@@ -54,7 +54,7 @@ export const GlobalStyles = createGlobalStyle`
 
     body {
     font-family: "Poppins", sans-serif;
-    color: var(--color-grey-700);
+    color: var(--color-gray-700);
 
     transition: color 0.3s, background-color 0.3s;
     min-height: 100vh;
@@ -88,8 +88,8 @@ export const GlobalStyles = createGlobalStyle`
 
     select:disabled,
     input:disabled {
-    background-color: var(--color-grey-200);
-    color: var(--color-grey-500);
+    background-color: var(--color-gray-200);
+    color: var(--color-gray-500);
     }
 
     input:focus,

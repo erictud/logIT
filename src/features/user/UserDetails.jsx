@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import { HiArrowRightOnRectangle, HiUser } from "react-icons/hi2";
 
-import { useUser } from "../auth/useUser";
+import { useUser } from "./useUser";
 import { useLogout } from "./useLogout";
 
 import Menu from "../../ui/Menu";

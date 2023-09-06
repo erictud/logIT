@@ -12,7 +12,7 @@ import Container from "../ui/Container";
 import Tabbed from "../ui/Tabbed";
 import MiniSpinner from "../ui/MiniSpinner";
 
-import { useUser } from "../features/auth/useUser";
+import { useUser } from "../features/user/useUser";
 
 const StyledPage = styled.div`
   padding: 1rem 0.5rem;
