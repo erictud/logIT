@@ -36,11 +36,27 @@ const types = {
     background-color: var(--color-primary-700);
     border-radius: 1rem;
   `,
-  svg: css`
-    color: var(--color-gray-900);
+  svgReset: css`
+    color: var(--color-gray-0);
+    background-color: var(--color-red-dark);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+
+    & svg {
+      font-size: 1.7rem;
+    }
+  `,
+  svg: css`
+    color: var(--color-gray-100);
+    background-color: var(--color-primary-700);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    & svg {
+      font-size: 1.7rem;
+    }
   `,
   secondary: css`
     color: var(--color-gray-0);
@@ -58,6 +74,10 @@ const types = {
     color: var(--color-gray-0);
     background-color: var(--color-red-dark);
   `,
+  transparent: css`
+    border: 1px solid var(--color-gray-900);
+    color: var(--color-gray-700);
+  `,
 };
 
 const Button = styled.button`
@@ -65,6 +85,9 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
   ${(props) => sizes[props.size]}
   ${(props) => types[props.type]}

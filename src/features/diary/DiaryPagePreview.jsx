@@ -1,14 +1,8 @@
 import { styled } from "styled-components";
-import {
-  HiEllipsisHorizontal,
-  HiOutlineStar,
-  HiOutlineTrash,
-  HiOutlinePencil,
-} from "react-icons/hi2";
+import { HiOutlineStar } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
 import Heading from "../../ui/Heading";
-import Menu from "../../ui/Menu";
 
 import { formatDate } from "../../utils/dateHelpers";
 
@@ -63,23 +57,6 @@ export default function DiaryPagePreview({ page }) {
     <StyledDiaryPagePreview to={`/diary/${id}`}>
       <StyledDiaryPagePreviewHeader>
         <Heading as="h3">{formatDate(creationDate)}</Heading>
-        <Menu>
-          <Menu.MenuContainer>
-            <Menu.OpenButton id="page-options">
-              <HiEllipsisHorizontal />
-            </Menu.OpenButton>
-            <Menu.MenuElement id="page-options">
-              <Menu.MenuButton>
-                <HiOutlineTrash />
-                Delete
-              </Menu.MenuButton>
-              <Menu.MenuButton>
-                <HiOutlinePencil />
-                Edit
-              </Menu.MenuButton>
-            </Menu.MenuElement>
-          </Menu.MenuContainer>
-        </Menu>
       </StyledDiaryPagePreviewHeader>
       <StyledDiaryPagePreviewBody>
         <Heading as="h2">{title}</Heading>

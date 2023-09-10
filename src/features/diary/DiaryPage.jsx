@@ -1,12 +1,15 @@
 import { styled } from "styled-components";
-import { HiOutlineClock, HiOutlineStar } from "react-icons/hi2";
+import { HiOutlineClock, HiOutlineStar, HiOutlinePencil, HiOutlineTrash } from "react-icons/hi2";
 
 import Spinner from "../../ui/Spinner";
 import Heading from "../../ui/Heading";
+import Paragraph from "../../ui/Paragraph";
+import Modal from "../../ui/Modal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 
 import { usePage } from "./usePage";
+import { useDeleteDiaryPage } from "./useDeleteDiaryPage";
 import { formatDate } from "../../utils/dateHelpers";
-import Paragraph from "../../ui/Paragraph";
 
 const Page = styled.div`
   padding: 2rem 1rem;
@@ -24,6 +27,50 @@ const DetailRow = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+`;
+
+const DescriptionContainer = styled.div`
+  width: 100%;
+  min-height: 50vw;
+  background-color: var(--color-gray-50);
+`;
+
+const ButtonContainer = styled.div`
+  width: 100%;
+  height: 6vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 2px solid var(--color-gray-300);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
+  & button {
+    padding: 1rem 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.7rem;
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  & div {
+    background-color: var(--color-gray-300);
+    width: 1px;
+    height: 5vh;
+  }
 `;
 
 const DetailElement = styled.div`
@@ -60,10 +107,11 @@ const StarsContainer = styled.div`
 
 export default function DiaryPage() {
   const { diaryPage, isLoading } = usePage();
+  const { isDeleting, deleteDiaryPage } = useDeleteDiaryPage();
 
   if (isLoading) return <Spinner />;
 
-  const { title, created_at, description, rating, cover_image } = diaryPage[0];
+  const { title, created_at, description, rating, cover_image, id } = diaryPage[0];
 
   return (
     <Page>
@@ -82,7 +130,31 @@ export default function DiaryPage() {
             ))}
         </StarsContainer>
       </DetailRow>
-      <Paragraph position="start">{description}</Paragraph>
+      <DescriptionContainer>
+        <Paragraph position="start">{description}</Paragraph>
+      </DescriptionContainer>
+      <Modal>
+        <ButtonContainer>
+          <Modal.Open opens="delete">
+            <button>
+              <HiOutlineTrash />
+              Delete
+            </button>
+          </Modal.Open>
+          <div></div>
+          <button>
+            <HiOutlinePencil />
+            Edit
+          </button>
+        </ButtonContainer>
+        <Modal.Window name="delete">
+          <ConfirmDelete
+            isDeleting={isDeleting}
+            onConfirmDelete={() => deleteDiaryPage(id)}
+            resourceName="diary page"
+          />
+        </Modal.Window>
+      </Modal>
     </Page>
   );
 }

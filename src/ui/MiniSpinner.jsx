@@ -13,4 +13,8 @@ const SpinnerMini = styled(BiLoaderAlt)`
   animation: ${rotate} 1.5s infinite linear;
 `;
 
+SpinnerMini.defaultProps = {
+  onCloseModal: "",
+};
+
 export default SpinnerMini;

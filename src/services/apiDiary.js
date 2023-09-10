@@ -77,3 +77,9 @@ export async function fetchDiaryPage(id) {
 
   return diaryPage;
 }
+
+export async function deleteDiaryPage(id) {
+  const { error } = await supabase.from("diaryPage").delete().eq("id", id);
+
+  if (error) throw new Error("Could not delete diary page");
+}

@@ -13,7 +13,7 @@ const StyledOpenButton = styled.button`
 `;
 
 const StyledMenuElement = styled.div`
-  z-index: 20;
+  z-index: 1000;
   position: fixed;
   right: ${(props) => props.position.x}px;
   top: ${(props) => props.position.y}px;
@@ -90,7 +90,8 @@ function MenuButton({ children, onClick, disabled }) {
       disabled={disabled}
       type="svg"
       size="big"
-      onClick={() => {
+      onClick={(e) => {
+        e.preventDefault();
         onClick?.();
         close();
       }}

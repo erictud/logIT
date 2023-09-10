@@ -9,8 +9,7 @@ export const useCreateDiary = function () {
 
   const { isLoading, mutate: createDiary } = useMutation({
     mutationFn: createDiaryAPI,
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
       toast.success("Diary page added successfully!");
       navigate("/diary");
     },
