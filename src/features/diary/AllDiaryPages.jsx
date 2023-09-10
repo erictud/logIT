@@ -13,7 +13,7 @@ export default function AllDiaryPages() {
       {!isFetching && diaryPages.length === 0 && (
         <Warning message="No diary page created" linkText="create one!" link="create" />
       )}
-      {isFetching && <Spinner />}
+      {isFetching && <Spinner message="Fetching diary pages" />}
     </div>
   );
 }

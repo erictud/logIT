@@ -5,6 +5,7 @@ import { HiOutlineBars3BottomLeft, HiOutlineXMark } from "react-icons/hi2";
 import Logo from "./Logo";
 import UserDetails from "../features/user/UserDetails";
 import Sidebar from "./Sidebar";
+import { Link } from "react-router-dom";
 
 const StyledHeader = styled.header`
   padding: 0.3rem 0.5rem;
@@ -41,7 +42,9 @@ export default function Header() {
           {navIsOpen ? <HiOutlineXMark /> : <HiOutlineBars3BottomLeft />}
         </NavButton>
         {/* Logo */}
-        <Logo icon={false} />
+        <Link to="diary">
+          <Logo icon={false} />
+        </Link>
         {/* User details */}
         <UserDetails />
       </StyledHeader>

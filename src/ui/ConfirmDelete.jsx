@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Heading from "./Heading";
 import Paragraph from "./Paragraph";
 import Button from "./Button";
-import MiniSpinner from "./MiniSpinner";
+import Spinner from "./Spinner";
 
 const Container = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ export default function ConfirmDelete({ onCloseModal, resourceName, onConfirmDel
   return (
     <Container>
       {isDeleting ? (
-        <MiniSpinner />
+        <Spinner message={`Deleting ${resourceName}`} />
       ) : (
         <>
           <Heading as="h2">Are you sure you want to delete this {resourceName}</Heading>
