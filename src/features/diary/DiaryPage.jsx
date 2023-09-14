@@ -10,6 +10,7 @@ import ConfirmDelete from "../../ui/ConfirmDelete";
 import { usePage } from "./usePage";
 import { useDeleteDiaryPage } from "./useDeleteDiaryPage";
 import { formatDate } from "../../utils/dateHelpers";
+import { Link } from "react-router-dom";
 
 const Page = styled.div`
   padding: 2rem 1rem;
@@ -116,7 +117,7 @@ export default function DiaryPage() {
   return (
     <Page>
       <Heading as="h1">{title}</Heading>
-      {cover_image && <Image src={cover_image} alt={title} />}
+      {cover_image && <Image src={`${cover_image}?cache=${Math.random()}`} alt={title} />}
       <DetailRow>
         <DetailElement>
           <HiOutlineClock />
@@ -142,10 +143,12 @@ export default function DiaryPage() {
             </button>
           </Modal.Open>
           <div></div>
-          <button>
-            <HiOutlinePencil />
-            Edit
-          </button>
+          <Link to="edit">
+            <button>
+              <HiOutlinePencil />
+              Edit
+            </button>
+          </Link>
         </ButtonContainer>
         <Modal.Window name="delete">
           <ConfirmDelete

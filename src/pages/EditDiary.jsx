@@ -1,3 +1,9 @@
+import EditDiaryPageForm from "../features/diary/EditDiaryPageForm";
+
 export default function EditDiary() {
-  return <div>EditDiary</div>;
+  return (
+    <div>
+      <EditDiaryPageForm />
+    </div>
+  );
 }

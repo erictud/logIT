@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GlobalStyles } from "./styles/GlobalStyles";
 
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
@@ -56,6 +57,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

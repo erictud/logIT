@@ -7,7 +7,11 @@ import { fetchDiaryPage } from "../../services/apiDiary";
 export function usePage() {
   const { id } = useParams();
 
-  const { isLoading, data: diaryPage } = useQuery({
+  const {
+    isLoading,
+    data: diaryPage,
+    isFetched,
+  } = useQuery({
     queryKey: ["diaryPage", id],
     queryFn: () => fetchDiaryPage(id),
     onError: (err) => {
@@ -15,5 +19,5 @@ export function usePage() {
     },
   });
 
-  return { diaryPage, isLoading };
+  return { diaryPage, isLoading, isFetched };
 }
