@@ -92,6 +92,29 @@ export async function fetchDiaryPage(id) {
 }
 
 export async function deleteDiaryPage(id) {
+  // getting diary page info in order to know if there is a cover image
+  const { data, error: gettingDiaryPageInfoErr } = await supabase
+    .from("diaryPage")
+    .select()
+    .eq("id", id);
+  const { cover_image } = data[0];
+
+  if (gettingDiaryPageInfoErr) {
+    throw new Error("Could not delete diary page");
+  }
+
+  // deleting cover image
+  if (cover_image) {
+    const fileName = `cover_image-${id}.png`;
+
+    const { error: deleteCoverImageErr } = await supabase.storage
+      .from("cover-images")
+      .remove([`${fileName}`]);
+
+    if (deleteCoverImageErr) throw new Error("Could not delete diary page");
+  }
+
+  // deleting db row
   const { error } = await supabase.from("diaryPage").delete().eq("id", id);
 
   if (error) throw new Error("Could not delete diary page");
