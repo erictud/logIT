@@ -282,10 +282,14 @@ export default function Landing() {
             consequatur ex fugiat voluptate distinctio repellat eveniet minima explicabo.
           </p>
           <Row>
-            <Button size="medium">Create account</Button>
-            <Button type="underline" size="medium">
-              Log in
-            </Button>
+            <Link to="auth">
+              <Button size="medium">Create account</Button>
+            </Link>
+            <Link to="auth">
+              <Button type="underline" size="medium">
+                Log in
+              </Button>
+            </Link>
           </Row>
         </JoinNowContainer>
       )}
